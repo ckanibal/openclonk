@@ -30,6 +30,9 @@ init:
 
 install:
   - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+  - cd C:\tools\vcpkg
+  - git pull
+  - .\bootstrap-vcpkg.bat
   - vcpkg install glew:x64-windows freetype:x64-windows freeglut:x64-windows
 
 before_build:
