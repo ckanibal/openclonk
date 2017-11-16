@@ -30,11 +30,7 @@ init:
 
 install:
   - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
-  - git clone https://github.com/Microsoft/vcpkg c:\projects\vcpkg
-  - cd c:\projects\vcpkg
-  - powershell -exec bypass scripts\bootstrap.ps1
-  - vcpkg install glew freetype freeglut 
-  - vcpkg integrate install
+  - vcpkg install glew:x64-windows freetype:x64-windows freeglut:x64-windows
 
 before_build:
 - cmd: >-
@@ -47,7 +43,7 @@ before_build:
     
     cmake --version
     
-    cmake .. -G %generator% -DCMAKE_TOOLCHAIN_FILE=C:\projects\vcpkg\scripts\buildsystems\vcpkg.cmake
+    cmake -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake -G %generator% ..
     
 build:
   project: c:\projects\openclonk\build\openclonk.sln
