@@ -5,15 +5,10 @@ branches:
 clone_folder: c:\projects\openclonk
 image:
 - Visual Studio 2017
+platform:
+  - x64
 configuration:
 - Release
-- Debug
-platform:
-- x64
-environment:
-  matrix:
-  - arch: Win64
-  # - arch: #does not work, Release|x64 not a valid target
 matrix:
   fast_finish: true
 
@@ -29,11 +24,12 @@ init:
 - echo %generator%
 
 install:
-  - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
   - cd C:\tools\vcpkg
   - git pull
   - .\bootstrap-vcpkg.bat
   - vcpkg install glew:x64-windows freetype:x64-windows freeglut:x64-windows libjpeg-turbo:x64-windows bzip2:x64-windows zlib:x64-windows libpng:x64-windows sdl2:x64-windows
+  
+cache: c:\tools\vcpkg\installed\
 
 before_build:
 - cmd: >-
