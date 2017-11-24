@@ -15,6 +15,10 @@ environment:
   - arch: Win64
 matrix:
   fast_finish: true
+  
+artifacts:
+  - path: openclonk-windows-amd64.zip
+    name: build planet
 
 # skip unsupported combinations
 init:
@@ -52,6 +56,9 @@ build:
   project: c:\projects\openclonk\build\openclonk.sln
   verbosity: minimal
   parallel: true 
+ 
+after_build:
+  - ps: Push-AppveyorArtifact openclonk-windows-amd64.zip
   
 only_commits:
   files:
